@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Zelegram.Views.KeyUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Zelegram.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="240" d:DesignWidth="330">
+    <Grid>
+        <Rectangle Width="330" Height="240" Fill="White" RadiusX="15" RadiusY="15">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#FFBBBBBB" BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <StackPanel>
+            <TextBox Margin="40" Name="KeyTextBox" FontSize="16" materialDesign:HintAssist.Hint="Enter Your Key : " Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <TextBlock Name="Error" Visibility="Hidden" Foreground="Red" HorizontalAlignment="Center">Entered Wrong Key</TextBlock>
+            <Button Margin="30" >Sign Up</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

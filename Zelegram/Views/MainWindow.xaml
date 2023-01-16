@@ -1,0 +1,32 @@
+﻿<Window x:Class="Zelegram.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Zelegram.ViewModels"
+        
+        xmlns:local="clr-namespace:Zelegram.Views"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:LoginVM}">
+            <local:LoginUC/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:RegisterVM}">
+            <local:RegisterUC/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MainWindowVM}">
+            <local:MainUC/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:KeyChekVM}">
+            <local:KeyUC/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CreateChatVM}">
+            <local:CreateChatUC/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <ContentControl Content="{Binding CurrentVM}"></ContentControl>
+        </Grid>
+    </Grid>
+</Window>

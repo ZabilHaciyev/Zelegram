@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="Zelegram.Views.MainUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:local="clr-namespace:Zelegram.Views"
+             mc:Ignorable="d" Background="#6474f5"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+       
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+
+
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="1" FontSize="24" Foreground="Wheat" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding UserName}"></TextBlock>
+       
+                <Button Margin="15 0 0 0" Grid.Column="0" Command="{Binding ChangePhotoCommand}" Height="70">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Ellipse HorizontalAlignment="Left" Width="80" Height="50">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding ImageSource, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+  
+            <Button Grid.Column="2" MaxWidth="150" Margin="5" Command="{Binding CreatChatButtonClicked ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">Create chat  </Button>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox Margin="10" Background="Aqua" ItemsSource="{Binding Chats , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Name="Chats">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction
+                          Command="{Binding ChatSelectedCommand}"
+                          CommandParameter="{Binding ElementName=Chats, Path=SelectedItem}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <!--<Button Content="{Binding Name }"></Button>-->
+                        <DockPanel>
+                            <TextBlock  Text="{Binding Name }" ></TextBlock>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Grid Grid.Column="1"  Margin="10" Background="Aqua">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ListBox  ItemsSource="{Binding Messages , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+       
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <local:MessageUC/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    
+                </ListBox>
+                <Grid  Background="White" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox AcceptsReturn="True" x:Name="MessageText" Grid.Column="0" Margin="10" >
+
+                    </TextBox>
+                    <Button Command="{Binding SendButtonClickedCommand}" CommandParameter="{Binding ElementName=MessageText, Path=Text}"  Grid.Column="1" Margin="5" >Send</Button>
+                </Grid>
+                
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
